@@ -1,18 +1,24 @@
 import styled from "styled-components";
 
-const Tag = styled.div`
+interface TagProps {
+  checked: boolean;
+}
+
+const Tag = styled.div<TagProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 1.7rem;
   border-radius: 5px;
-  width: 18rem;
   font-weight: 500;
   color: var(--white);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   margin-left: 0.1rem;
   margin-right: 0.1rem;
-  background-color: var(--tag);
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background: ${({ checked }) =>
+    `${checked ? `var(--tag-checked)` : `var(--tag)`}`};
 `;
 
 const TagText = styled.span`
@@ -26,7 +32,7 @@ interface CityTagProps {
 
 const CityTag: React.FC<CityTagProps> = ({ name }) => {
   return (
-    <Tag>
+    <Tag checked={true}>
       <TagText>{name}</TagText>
     </Tag>
   );
