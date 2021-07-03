@@ -1,7 +1,4 @@
-import cities from "./Entities/city.json";
+import fetchCities from "./ApiCalls";
+import { citiesQuery } from "./queries";
 
-const fetchCities = async () => {
-  return JSON.parse(JSON.stringify(cities));
-};
-
-export default fetchCities;
+export { fetchCities, citiesQuery };
