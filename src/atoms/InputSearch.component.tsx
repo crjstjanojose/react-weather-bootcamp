@@ -11,6 +11,8 @@ const SearchBar = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem;
+  background-color: ${({ theme }) => theme.background};
+  /* border: ${({ theme }) => theme.secondary} solid 2px; */
 `;
 
 interface SearchInputProps {
@@ -22,8 +24,8 @@ const SearchInput = styled.input<SearchInputProps>`
   border-radius: 100px;
   height: 1rem;
   margin-right: -2.5rem;
-  background: ${({ error }) =>
-    `${error ? `var(--primary)` : `var(--gray-dark-3)`}`};
+  background: ${({ error, theme }) =>
+    `${error ? theme.error : theme.secondary}`};
   padding: 0.75rem 2rem;
   outline: none;
   transition: 0.2s;

@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { citiesAtom } from "../global";
+import { checkedCityAtom, citiesAtom } from "../global";
 import CityTag from "../atoms/CityTag.component";
 import styled from "styled-components";
 
@@ -11,10 +11,21 @@ const Container = styled.div`
 
 const CityList = () => {
   const [cities] = useAtom(citiesAtom);
+  const [checkedCity, setCheckedCity] = useAtom(checkedCityAtom);
+
+  const onClick = (id: number) => {
+    setCheckedCity(id);
+  };
+
   return (
     <Container>
       {cities.map((city) => (
-        <CityTag name={city.name} key={city.id}></CityTag>
+        <CityTag
+          name={city.name}
+          key={city.id}
+          onClick={() => onClick(city.id)}
+          checked={checkedCity === city.id}
+        ></CityTag>
       ))}
     </Container>
   );

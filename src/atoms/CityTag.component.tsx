@@ -17,8 +17,9 @@ const Tag = styled.div<TagProps>`
   margin-right: 0.1rem;
   padding-left: 2rem;
   padding-right: 2rem;
-  background: ${({ checked }) =>
-    `${checked ? `var(--tag-checked)` : `var(--tag)`}`};
+  cursor: pointer;
+  background: ${({ checked, theme }) =>
+    `${checked ? theme.tagChecked : theme.tag}`};
 `;
 
 const TagText = styled.span`
@@ -28,11 +29,13 @@ const TagText = styled.span`
 
 interface CityTagProps {
   name: string;
+  checked: boolean;
+  onClick: () => void;
 }
 
-const CityTag: React.FC<CityTagProps> = ({ name }) => {
+const CityTag: React.FC<CityTagProps> = ({ name, checked, onClick }) => {
   return (
-    <Tag checked={true}>
+    <Tag checked={checked} onClick={onClick}>
       <TagText>{name}</TagText>
     </Tag>
   );

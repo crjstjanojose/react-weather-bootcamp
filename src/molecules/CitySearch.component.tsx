@@ -1,5 +1,7 @@
+import { useAtom } from "jotai";
 import styled from "styled-components";
 import InputSearch from "../atoms/InputSearch.component";
+import { citiesAtom } from "../global";
 import CityList from "./CityList.component";
 
 const Container = styled.div`
@@ -11,13 +13,14 @@ const Container = styled.div`
   margin-right: auto;
   margin-top: 0;
   padding-top: 5rem;
-  /* background-color: #f1f1f1; */
+  background-color: ${({ theme }) => theme.background};
 `;
 
 const CitySearch = () => {
+  const [cities] = useAtom(citiesAtom);
   return (
     <Container>
-      <InputSearch found />
+      <InputSearch found={cities.length > 0} />
       <CityList />
     </Container>
   );
